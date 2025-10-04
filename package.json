@@ -2,6 +2,22 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
+  "description": "",
+  "homepage": "https://github.com/Iamam786/650_english#readme",
+  "bugs": {
+    "url": "https://github.com/Iamam786/650_english/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iamam786/650_english.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "scripts": {
     "build": "next build",
     "dev": "next dev",

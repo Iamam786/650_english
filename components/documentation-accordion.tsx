@@ -1,14 +1,15 @@
 "use client"
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { FileText, Rocket, Code, Shield, Zap, BookOpen } from "lucide-react"
+import { FileText, Handshake, Code, Shield, Zap, BookOpen } from "lucide-react"
 import React, { useEffect, useState } from "react"
 
 const documentationSections = [
-  {
-    title: "Greeting Someone",
-    icon: Rocket,
-    content: `Greeting someone is what you do when you first see them… basically saying ‘Hello’. There are many different ways people greet each other in English. Some being formal or appropriate for every situation and others being informal and something you should say only to close friends or family.
+	{
+		title: "Greeting Someone",
+		icon: Handshake,
+		content: `Greeting someone is what you do when you first see them… basically saying ‘Hello’. 
+		There are many different ways people greet each other in English. Some being formal or appropriate for every situation and others being informal and something you should say only to close friends or family.
 	In the United States, the most common way to greet someone with words. In formal situations or when you meet someone for the first time you shake hands. Some people wave at one another. In informal situations with people you know (family or good friends) you may hug or kiss one another.
 	Formal Greetings
 	Hello
@@ -27,20 +28,20 @@ const documentationSections = [
 	What’s new?
 	What have you been up to?
 	How are you?`,
-  },
-  {
-    title: "Saying Good-Bye",
-    icon: Zap,
-    content: `How you say good-bye in English depends on who you are talking to. There are formal, informal and VERY informal ways to say good-bye.
+	},
+	{
+		title: "Saying Good-Bye",
+		icon: Handshake,
+		content: `How you say good-bye in English depends on who you are talking to. There are formal, informal and VERY informal ways to say good-bye.
 	Similar to greetings, some people shake hands, wave, hug and kiss but this varies from situation to situation. It is best to follow what other people are doing or to do what makes you comfortable.
-	Formal
+	<strong>Formal</strong>
 	Good-Bye
 	Have a nice day!
 	It was nice seeing you again.
 	I look forward to seeing you again.
 	Take care.
 	Good night!
-	Informal
+	<strong>Informal</strong>
 	Bye
 	Bye-Bye
 	See you later! Or- See you soon!
@@ -55,13 +56,14 @@ const documentationSections = [
 	I’ve gotta take off.
 	See ya.
 	Pace`,
-  },
-  {
-    title: "Introductions",
-    icon: Zap,
-    content: `When you meet someone for the first time you need to introduce yourself, which means telling them who you are.
-	When you are introducing yourself or someone else you can also share a little more information. For
-	example… your job title, how you know the host, or something else about yourself.
+	},
+	{
+		title: "Introductions",
+		icon: Zap,
+		content: `When you meet someone for the first time you need to introduce yourself, which means telling them who you are.
+	When you are introducing yourself or someone else you can also share a little more information. For example… 
+	your job title, 
+	how you know the host, or something else about yourself.
 	Introducing Yourself
 	Hello, I’m ___________.
 	I am ____________.
@@ -82,11 +84,11 @@ const documentationSections = [
 	- I’d like to introduce you to Abdul, the Frontend Developer at ClickinPedia.
 	- I’d like you to meet Anna. She has been a friend of mine for ten years.
 	`,
-  },
-  {
-    title: "Talking about Likes",
-    icon: Zap,
-    content: `There are various ways to express liking or enjoying something in English.
+	},
+	{
+		title: "Talking about Likes",
+		icon: Zap,
+		content: `There are various ways to express liking or enjoying something in English.
 	I like…
 	I enjoy…
 	My favorite _________ is…
@@ -94,7 +96,7 @@ const documentationSections = [
 	I love…
 	I really like/love…
 	I adore…
-	Example Sentences
+	<b>Example Sentences</b>
 	- I like pizza.
 	- I like to read books by Dr. Seuss.
 	- Peter enjoys running in the snow.
@@ -106,17 +108,17 @@ const documentationSections = [
 	- I adore Maria. She is such a nice girl.
 	- My favorite movie is Top Gun. It is full of action.
 	- My favorite season is summer because I love the warm weather.`,
-  },
-  {
-    title: "Talking about Dislikes",
-    icon: Zap,
-    content: `There are many ways to talk about things you don’t likes. Below you will find some sentence starters and example sentences.
+	},
+	{
+		title: "Talking about Dislikes",
+		icon: Zap,
+		content: `There are many ways to talk about things you don’t likes. Below you will find some sentence starters and example sentences.
 	I don’t like…
 	I don’t enjoy…
 	I dislike…*
 	I hate…
 	My least favorite ________ is…
-	Example Sentences
+	<b>Example Sentences</b>
 	I don’t like fish.
 	I don’t like to pick up after my kids.
 	I don’t enjoy eating spicy food.
@@ -128,8 +130,8 @@ const documentationSections = [
 	My least favorite season is winter.
 	* Dislike is not very commonly used in American English. You can use it and it is correct but not used as often as ‘don’t like’ or ‘hate’.
 	What do you do? /Jobs
-	What do you do,
-	 is a common question. It is what you ask someone when you want to know what they work in or how they spend their time. It is impolite and not common to directly ask someone, “What is your job?” in English. When someone asks you “What do you do?” they mean…
+	What do you do,is a common question. 
+	It is what you ask someone when you want to know what they work in or how they spend their time. It is impolite and not common to directly ask someone, “What is your job?” in English. When someone asks you “What do you do?” they mean…
 	What do you work in?
 	What do you do for a living?
 	How do you spend most of your time?
@@ -137,7 +139,7 @@ const documentationSections = [
 	I’m a …
 	I am…
 	I work as a…
-	Example Sentences
+	<b>Example Sentences</b>
 	I’m a teacher.
 	I’m a full time student.
 	I’m a stay at home mom.
@@ -147,12 +149,13 @@ const documentationSections = [
 	I’m a college student and work part-time as a bartender.
 	I work in a paper factory.
 	I work in sales for a large telecommunications company.
-	Addition Resources
+	<b>Additional Resources:</b>
 	1- Different examples of how you can respond to ‘What do you do?’
 	What Are You Doing Right Now?
-	In the United States, it is common to ask someone ‘What are you doing?’. If someone asks you this, they want to know what you are doing in this exact moment.
+	In the United States, it is common to ask someone ‘What are you doing?’. 
+	If someone asks you this, they want to know what you are doing in this exact moment.
 	I am + verb +ing
-	Example Sentences
+	<b>Example Sentences:</b>
 	I am reading a book.
 	I am practicing English.
 	I am talking on the phone.
@@ -174,11 +177,11 @@ const documentationSections = [
 	Song about ‘What are you doing?
 	to help practice present continuous.
 	`,
-  },
-  {
-    title: "Talking about the Past",
-    icon: Zap,
-    content: `It is very common to talk about things that already happened. If something already happened or is finished it is in the past. Below you will find some sentence starters and example sentences to help you talk about things you have done in the past.
+	},
+	{
+		title: "Talking about the Past",
+		icon: Zap,
+		content: `It is very common to talk about things that already happened. If something already happened or is finished it is in the past. Below you will find some sentence starters and example sentences to help you talk about things you have done in the past.
 	Most Common Verbs Used to Talk about the Past
 	I went…
 	I ate…
@@ -188,7 +191,7 @@ const documentationSections = [
 	I saw…
 	I talked to…
 	I worked…
-	Example Sentences:
+	<b>Example Sentences</b>
 	I went to work.
 	I ate spaghetti for lunch.
 	I read two books over the weekend.
@@ -218,7 +221,7 @@ const documentationSections = [
 	In a few weeks…
 	In a few years…
 	When I retire…
-	Example Sentences
+	<b>Example Sentences</b>
 	I will go on vacation in June.
 	I will meet with my friends on Friday.
 	I will go shopping next week.
@@ -226,24 +229,23 @@ const documentationSections = [
 	Next year I am moving to Boston.
 	I am going to get married in a few years.
 	When I retire I am going to travel a lot.
-	Additional Resources
+<b>Additional Resources:</b>
 	1- Video talking about ‘Will and Going to’
 	2- 10 Expressions to use when talking about the future
 	3- Another Video on ‘Will and be going to’
 	4- What are you going to do this weekend? Video`,
-  },
-  {
-    title: " Routines",
-    icon: Zap,
-    content: `A routine is something you do every day or often. Below you will learn different phrases to help you
-	explain your routines.
+	},
+	{
+		title: " Routines",
+		icon: Zap,
+		content: `A routine is something you do every day or often. Below you will learn different phrases to help you explain your routines.
 	List of some things you do every day or often:
 	Wake up, go to sleep, brush your teeth, take a shower, use the internet, cook, clean, drive, talk to your husband or wife, study, read, etc.
 	I ____________ every day.
 	On _________ and ___________, I _____________.
 	Every _________, I ___________.
 	I ___________ three times a week.
-	Example Sentences
+	<b>Example Sentences</b>
 	I wake up at 7am.
 	I work out four days a week.
 	I play baseball every Sunday.
@@ -255,18 +257,19 @@ const documentationSections = [
 	I take a shower every night.
 	I eat three times a day.
 	I go to Italy every summer.
-	Additional Resources
+<b>Additional Resources:</b>
 	1- Video about activities your do every day
 	2- Vocabulary often used when talking about daily routines
 	3- Song about routines in English
 	4- Another song about daily routines`,
-  },
-  {
-    title: "Hobbies & Free Time:-",
-    icon: Zap,
-    content: `A hobby is something that you do in your free time. It is something that you enjoy doing and do often.
+	},
+	{
+		title: "Hobbies & Free Time:-",
+		icon: Zap,
+		content: `A hobby is something that you do in your free time. It is something that you enjoy doing and do often.
 	Free time is a time when you don’t have to work or don’t have any other obligations.
-	In American English it is not common to use the word hobby. It is more common to ask say:
+	In American English it is not common to use the word hobby. 
+	It is more common to ask say:
 	What do you like to do for fun?
 	What do you like to do in your free time?
 	Common ways to respond to these questions are:
@@ -275,7 +278,7 @@ const documentationSections = [
 	I ___________ every week.
 	I am learning to…
 	When I’m not working, I like to…
-	Example Sentences
+	<b>Example Sentences</b>
 	In my free time, I like to work out at the gym.
 	I like to spend time with my family and friends in my free time.
 	I am learning to play the guitar.
@@ -283,15 +286,15 @@ const documentationSections = [
 	I like to read novels in my free time.
 	I go to a cooking class every week.
 	I am learning to knit. I not very good at it yet but I am getting better.
-	Additional Resources
+	<b>Additional Resources:</b>
 	Video: What do you do for fun?
 	Video: 3 min. English- Ask what someone’s hobbies are.
 	Video: Talking about hobbies and free time`,
-  },
-  {
-    title: "Family",
-    icon: Zap,
-    content: `Everyone’s family is different. Below you will find some phrases to help you talk about your family.
+	},
+	{
+		title: "Family",
+		icon: Zap,
+		content: `Everyone’s family is different. Below you will find some phrases to help you talk about your family.
 	Phrases To Talk about Your Family:
 	There are ____ people in my family.
 	I live with my ___________ and ____________.
@@ -306,16 +309,16 @@ const documentationSections = [
 	Do you live near your extended family?
 	Did you grow up here?
 	How many siblings do you have?
-	Additional Resources:
+	<b>Example Sentences</b>
 	1-Basic Family Vocabulary
 	2- Video- Talking about your family
 	3-Video- Talking about your family (intermediate)
 	`,
-  },
-  {
-    title: "Relationships",
-    icon: Zap,
-    content: `Talking about someone’s personal relationships can be a touchy (or sensitive) subject. Don’t talk to someone about their relationships until you get to know them a little more.
+	},
+	{
+		title: "Relationships",
+		icon: Zap,
+		content: `Talking about someone’s personal relationships can be a touchy (or sensitive) subject. Don’t talk to someone about their relationships until you get to know them a little more.
 	Common Vocabulary Used When Talking about Relationships:
 	Single: alone, not in a relationship
 	Married: in a committed relationship
@@ -327,7 +330,7 @@ const documentationSections = [
 	Hook up: someone you have sex with once, but not in a relationship
 	Make out: kiss a lot
 	Break up: end a relationship
-	Example Sentences
+	<b>Example Sentences</b>
 	1- After a horrible break up and divorce, I am happy to be single again.
 	2- We have been happily married for 10 years.
 	3- My brother is not in a relationship. He likes to hook up with random girls.
@@ -337,16 +340,16 @@ const documentationSections = [
 	When did you get divorced?
 	Have you been friends for a long time?
 	How did you meet each other?
-	Additional Resources:
+	<b>Example Sentences</b>
 	1- Video Lesson: Love, Dating and Relationships
 	2- Expressions about Love and Relationships
 	3- Video: Phrases for Describing Relationships
 	`,
-  },
-  {
-    title: "Personal Characteristics",
-    icon: Zap,
-    content: `There are many ways to describe someone. Below you will learn some of the most basic ways todescribe someone.
+	},
+	{
+		title: "Personal Characteristics",
+		icon: Zap,
+		content: `There are many ways to describe someone. Below you will learn some of the most basic ways todescribe someone.
 	There are many links in the resources section to help you expand you vocabulary and understanding of this topic.
 	I am… He/She is….
 	tall/short
@@ -362,18 +365,17 @@ const documentationSections = [
 	Easy-going (goes with the flow, enjoys most things)
 	Lazy (does not do a lot)
 	Mean (rude, has a bad attitude, treats other people badly)
-	Additional Resources:
+	<b>Additional Resources:</b>
 	List of Words to Physically Describe Someone in English
 	List of Words to Describe Someone’s Personality in English
 	Video: 37 Ways to Describe to Someone’s Personal Appearance
 	Video/Song: Describing People Vocabulary
 	Video: People describing each other`,
-  },
-  {
-    title: "Food",
-    icon: Zap,
-    content: `Everyone loves to eat, right? Below you will find some phrases to help you talk about food and eating
-	in English.
+	},
+	{
+		title: "Food",
+		icon: Zap,
+		content: `Everyone loves to eat, right? Below you will find some phrases to help you talk about food and eating in English.
 	My favorite food is________________.
 	My least favorite food is ____________.
 	I like to eat ___________________.
@@ -386,7 +388,7 @@ const documentationSections = [
 	I don’t cook.
 	I only know how to cook __________ and ___________.
 	This is delicious.
-	Example Sentences
+	<b>Example Sentences</b>
 	1- My favorite food is spaghetti with meatballs.
 	2- My least favorite food is sushi.
 	3- I like to eat Chinese food.
@@ -404,11 +406,11 @@ const documentationSections = [
 	Additional Resources:
 	Video about food and restaurants
 	`,
-  },
-  {
-    title: "Weather",
-    icon: Zap,
-    content: `The weather is a very common conversation topic. The weather affects everyone, no matter where they are.
+	},
+	{
+		title: "Weather",
+		icon: Zap,
+		content: `The weather is a very common conversation topic. The weather affects everyone, no matter where they are.
 	There are four seasons each year: fall, winter, spring and summer. The weather in each season will vary depending on where you are (geographically) and the year. Some countries experience more mild seasons whereas others experience extreme highs and lows.
 	Common Phrases about the Weather
 	It’s sunny.
@@ -432,11 +434,11 @@ const documentationSections = [
 	Video- How to talk about the Weather
 	Video- The Weather
 	Video- Weather Vocabulary`,
-  },
-  {
-    title: "Transportation",
-    icon: Zap,
-    content: `There are many different means of transportation. The most common being: cars, trains, subway, planes, bicycle and walking.
+	},
+	{
+		title: "Transportation",
+		icon: Zap,
+		content: `There are many different means of transportation. The most common being: cars, trains, subway, planes, bicycle and walking.
 	Below you will learn some phrases that you can use to talk about transportation.
 	I take the bus to _[place name/Work]__ every day.
 	I drive to _[place name/Work]___ every day.
@@ -464,11 +466,11 @@ const documentationSections = [
 	Video: Public Transportation
 	Video: Means of Transportation Vocabulary
 	`,
-  },
-  {
-    title: "Telling Time",
-    icon: Zap,
-    content: `Time is important. In the United States it is customary to be punctual or arrive on time to places. It is not common to arrive late or after a designated meeting time. It is considered rude to arrive late.
+	},
+	{
+		title: "Telling Time",
+		icon: Zap,
+		content: `Time is important. In the United States it is customary to be punctual or arrive on time to places. It is not common to arrive late or after a designated meeting time. It is considered rude to arrive late.
 	When reading a clock, it is customary to state the exact time. Some people round up but telling the exact time is more common.
 	For example:
 	2:00= It’s two o’clock.
@@ -492,11 +494,11 @@ const documentationSections = [
 	Video: Telling Time in American English
 	Video: Expressing Time in English
 	`,
-  },
-  {
-    title: "Directions",
-    icon: Zap,
-    content: `Sometimes you need help finding something or someplace. Below are common phrases used to talk about directions in English.
+	},
+	{
+		title: "Directions",
+		icon: Zap,
+		content: `Sometimes you need help finding something or someplace. Below are common phrases used to talk about directions in English.
 	Excuse me, where is…..?
 	I need to get to _______.
 	On/at: the corner
@@ -521,11 +523,11 @@ const documentationSections = [
 	Video: Learn how to give directions
 	Video: Basic Vocabulary for giving directions
 	`,
-  },
-  {
-    title: "Calendar & Dates",
-    icon: Zap,
-    content: `There are seven (7) days of the week. In the United States, Sunday is the first day of the week. Days and Months are capitalized in English. So, they start with a BIG letter.
+	},
+	{
+		title: "Calendar & Dates",
+		icon: Zap,
+		content: `There are seven (7) days of the week. In the United States, Sunday is the first day of the week. Days and Months are capitalized in English. So, they start with a BIG letter.
 	Days: Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
 	Months: January, February, March, April, May, June, July, August, September, October, November,December
 	Date: For stating the date you need to use ordinal numbers in English. (First, second, third, etc.)
@@ -556,11 +558,11 @@ const documentationSections = [
 	Video: Days of the week
 	Video/Song: Months of the year
 	Video: How to pronounce Ordinal numbers`,
-  },
-  {
-    title: "Numbers",
-    icon: Zap,
-    content: `Knowing how to read and understand numbers are an essential part of improving your English language skills.
+	},
+	{
+		title: "Numbers",
+		icon: Zap,
+		content: `Knowing how to read and understand numbers are an essential part of improving your English language skills.
 	Look in the resources section on learning basic numbers 0-99.
 	Large numbers:
 	100= one hundred
@@ -590,11 +592,11 @@ const documentationSections = [
 	Video: Reading Big Numbers in English
 	Video: Reading numbers in English
 	`,
-  },
-  {
-    title: "Where are you from?/Nationalities",
-    icon: Zap,
-    content: `What is your nationality? Where are you from? When someone wants to know what country or place you are from they would ask you this question.
+	},
+	{
+		title: "Where are you from?/Nationalities",
+		icon: Zap,
+		content: `What is your nationality? Where are you from? When someone wants to know what country or place you are from they would ask you this question.
 	You can state which nationality you are or which
 	I am___________.
 	Examples for stating your nationality:
@@ -625,11 +627,11 @@ const documentationSections = [
 	Video: Where are you from? Where do you live?
 	Nationalities Vocabulary with Audio TV & Movies Watching TV and movies is something that most people enjoy.
 	`,
-  },
-  {
-    title: "Talking about TV",
-    icon: Zap,
-    content: `Common Types of TV shows: Sitcom- amusing show about fictional characters
+	},
+	{
+		title: "Talking about TV",
+		icon: Zap,
+		content: `Common Types of TV shows: Sitcom- amusing show about fictional characters
 	Cartoon- animated drawings
 	Reality- follows real people around, doing ‘real’ things,
 	Soap Opera- fictional show that goes on for a long time and is often very dramatic
@@ -658,11 +660,11 @@ const documentationSections = [
 	Video: Talking about movies
 	Video: Talking about TV Shows
 	`,
-  },
-  {
-    title: "Neighborhoods and Houses",
-    icon: Zap,
-    content: `There are any types of places to live; with a house and an apartment being the most common.
+	},
+	{
+		title: "Neighborhoods and Houses",
+		icon: Zap,
+		content: `There are any types of places to live; with a house and an apartment being the most common.
 	Below you will learn some vocabulary to help you talk about and describe where you live.
 	Urban:
 	 a population dense area, main area of a city
@@ -698,11 +700,11 @@ const documentationSections = [
 	Video: Apartments for Rent
 	Video: 10 Phrases for Renting an Apartment
 	Video: Talking about your house and neighborhood`,
-  },
-  {
-    title: "Grocery Shopping",
-    icon: Zap,
-    content: `Everyone needs to eat. When you need to buy food you go to the grocery store or supermarket. Below
+	},
+	{
+		title: "Grocery Shopping",
+		icon: Zap,
+		content: `Everyone needs to eat. When you need to buy food you go to the grocery store or supermarket. Below
 	you will learn vocabulary and phrases to help you go grocery shopping.
 	Shopping Cart:
 	 Buggy/Car you push around and put food in
@@ -740,11 +742,11 @@ const documentationSections = [
 	Video: 
 	English Phrases for the Supermarket
 	`,
-  },
-  {
-    title: "Restaurant or Coffee Shop",
-    icon: Zap,
-    content: `It is nice to go out to eat or drink once in a while. Order food in a public place can be difficult,
+	},
+	{
+		title: "Restaurant or Coffee Shop",
+		icon: Zap,
+		content: `It is nice to go out to eat or drink once in a while. Order food in a public place can be difficult,
 	especially if you are learning a new language.
 	Below you will find some phrases to use at restaurants or coffee shops.
 	I would like a table for _____.
@@ -778,11 +780,11 @@ const documentationSections = [
 	2- Video: Basic English Vocabulary for Restaurants
 	3- Video: Expressions Used at a Restaurant
 	`,
-  },
-  {
-    title: "Clothes and Shoes",
-    icon: Zap,
-    content: `Buying new clothes and shoes can be difficult when you are trying to do it in a new language.
+	},
+	{
+		title: "Clothes and Shoes",
+		icon: Zap,
+		content: `Buying new clothes and shoes can be difficult when you are trying to do it in a new language.
 	Below you will find phrases to help you shop for clothing and shoes in a store.
 	Looking for Something
 	I am looking for _____________. Can you tell me where to find it?
@@ -805,11 +807,11 @@ const documentationSections = [
 	Video: Clothing Vocabulary
 	Video: Talking about Shopping
 	`,
-  },
-  {
-    title: "Being Sick, Doctors and Hospitals",
-    icon: Zap,
-    content: `Everyone gets sick once in a while. Below you will find phrases to help you talk about sickness in
+	},
+	{
+		title: "Being Sick, Doctors and Hospitals",
+		icon: Zap,
+		content: `Everyone gets sick once in a while. Below you will find phrases to help you talk about sickness in
 	English.
 	Problems:
 	I feel sick.
@@ -846,11 +848,11 @@ const documentationSections = [
 	Video: 12 Questions Doctors ask Patients
 	Video: English Health Vocabulary
 	`,
-  },
-  {
-    title: "Crime, Safety and Police",
-    icon: Zap,
-    content: `Crime, safety and police are topics that you should know how to talk about. Even if you do not
+	},
+	{
+		title: "Crime, Safety and Police",
+		icon: Zap,
+		content: `Crime, safety and police are topics that you should know how to talk about. Even if you do not
 	experience crime first hand; you will hear and see crime talked about on the news and TV. It is a
 	common topic.
 	High Crime Rate-
@@ -884,11 +886,11 @@ const documentationSections = [
 	Additional Resources:
 	Video: Talking about crime
 	`,
-  },
-  {
-    title: "Problems/Advice",
-    icon: Zap,
-    content: `We often have problems and need advice. Below are phrases to use to talk about your problems and how to give advice to others.
+	},
+	{
+		title: "Problems/Advice",
+		icon: Zap,
+		content: `We often have problems and need advice. Below are phrases to use to talk about your problems and how to give advice to others.
 	Asking about a problem
 	What’s wrong?
 	What’s the matter?
@@ -912,11 +914,11 @@ const documentationSections = [
 	Video: Learn to Give Advice
 	Video: Should, Ought to, Had Better (Advanced)
 	`,
-  },
-  {
-    title: "Making Plans/Making Excuses",
-    icon: Zap,
-    content: `Everyone has to make plans; whether it is to go to a meeting or out to eat. Below, you will learn some common phrases for making plans with someone and making excuses.
+	},
+	{
+		title: "Making Plans/Making Excuses",
+		icon: Zap,
+		content: `Everyone has to make plans; whether it is to go to a meeting or out to eat. Below, you will learn some common phrases for making plans with someone and making excuses.
 	Ask:
 	Do you want to ___________?
 	Would you like to __________?
@@ -944,11 +946,11 @@ const documentationSections = [
 	Additional Resources:
 	Video: Making Plans in English
 	`,
-  },
-  {
-    title: "Invitations",
-    icon: Zap,
-    content: `Knowing the correct way to invite someone to do something can be difficult in a new language. Below, you will learn phrases to help you invite someone to do something in English.
+	},
+	{
+		title: "Invitations",
+		icon: Zap,
+		content: `Knowing the correct way to invite someone to do something can be difficult in a new language. Below, you will learn phrases to help you invite someone to do something in English.
 	Inviting Someone to do Something
 	Would you like to ________ with me?
 	Would you like to go ____________ on Saturday?
@@ -971,11 +973,11 @@ const documentationSections = [
 	Video: Would you like…? (polite invitations and offers)
 	Video: How to turn down an invitation
 	`,
-  },
-  {
-    title: "Talking about Your feelings",
-    icon: Zap,
-    content: `Leaning to talk about how you feel is important. Below you will learn some phrases and vocabulary to help you talk about your feelings and emotions in English.
+	},
+	{
+		title: "Talking about Your feelings",
+		icon: Zap,
+		content: `Leaning to talk about how you feel is important. Below you will learn some phrases and vocabulary to help you talk about your feelings and emotions in English.
 	Asking Someone ‘How they are?’
 	How are you?
 	How are you feeling?
@@ -1003,11 +1005,11 @@ const documentationSections = [
 	Additional Resources:
 	Video: Learn Emotions and Feelings
 	`,
-  },
-  {
-    title: "Agreeing and Disagreeing",
-    icon: Zap,
-    content: `Learning how to agree and disagree with a statement is important. Below you will learn phrases to help you do this.
+	},
+	{
+		title: "Agreeing and Disagreeing",
+		icon: Zap,
+		content: `Learning how to agree and disagree with a statement is important. Below you will learn phrases to help you do this.
 	The most common ways to agree:
 	“Me too.” (Response to a positive statement)
 	“Me neither.” (Response to a negative statement)
@@ -1032,11 +1034,11 @@ const documentationSections = [
 	Video: How to Disagree in English
 	Video: How to Agree with So, Neither, and Too
 	`,
-  },
-  {
-    title: "Similarities and Differences",
-    icon: Zap,
-    content: `Being able to make comparisons is important. Below you will learn some common phrases to help you talk about similarities and differences.
+	},
+	{
+		title: "Similarities and Differences",
+		icon: Zap,
+		content: `Being able to make comparisons is important. Below you will learn some common phrases to help you talk about similarities and differences.
 	Sentence Starters to Talk about Similarities
 	___________ is like _________.
 	__________ is similar to ___________.
@@ -1064,11 +1066,11 @@ const documentationSections = [
 	Video: 1:-Making Comparisons
 	2:-Comparing/Contrasting Activity
 	`,
-  },
-  {
-    title: "Stating Your Opinion",
-    icon: Zap,
-    content: `When you want to express what you think about something there are many different sentence starters that you can use.
+	},
+	{
+		title: "Stating Your Opinion",
+		icon: Zap,
+		content: `When you want to express what you think about something there are many different sentence starters that you can use.
 	I think…
 	In my opinion…
 	I’d suggest…
@@ -1096,11 +1098,11 @@ const documentationSections = [
 	1- Video on how to express your opinion in English.
 	2- Another video on how to give your opinion in English
 	`,
-  },
-  {
-    title: "Complaining",
-    icon: Zap,
-    content: `You complain when something does not go or is not right. There are many expressions you can use to complain in English.
+	},
+	{
+		title: "Complaining",
+		icon: Zap,
+		content: `You complain when something does not go or is not right. There are many expressions you can use to complain in English.
 	I’m sorry to bother you but…
 	There seems to be a problem with…
 	Can you please help me with…
@@ -1120,11 +1122,11 @@ const documentationSections = [
 	Video: Making a Complaint
 	Video: Complaining at a Restaurant
 	`,
-  },
-  {
-    title: "Requesting Information/Asking for Something",
-    icon: Zap,
-    content: `If you know how to make a request politely, you will make a better impression on others. Being polite. It is important, with your friends, family, and strangers.
+	},
+	{
+		title: "Requesting Information/Asking for Something",
+		icon: Zap,
+		content: `If you know how to make a request politely, you will make a better impression on others. Being polite. It is important, with your friends, family, and strangers.
 	Would you please… ?
 	Could you please…?
 	Can you please… ?
@@ -1147,11 +1149,11 @@ const documentationSections = [
 	Additional Resources:
 	Video: Making polite requests
 	`,
-  },
-  {
-    title: "Asking questions",
-    icon: Zap,
-    content: `There are many different ways to ask questions in English. Below you will find the most common question words and there are many resources for you to use to improve your ability to ask and answer questions.
+	},
+	{
+		title: "Asking questions",
+		icon: Zap,
+		content: `There are many different ways to ask questions in English. Below you will find the most common question words and there are many resources for you to use to improve your ability to ask and answer questions.
 	Most common question words:
 	Who…?
 	What…?
@@ -1179,11 +1181,11 @@ const documentationSections = [
 	Video: How to Understand Native Speakers Questions
 	Text: How to Form Yes/No Questions in English
 	`,
-  },
-  {
-    title: "Interjections",
-    icon: Zap,
-    content: `Interjections are a sound people make that has a common meaning. There are tons of common interjections in English. You most likely have heard them and maybe you use them as well.
+	},
+	{
+		title: "Interjections",
+		icon: Zap,
+		content: `Interjections are a sound people make that has a common meaning. There are tons of common interjections in English. You most likely have heard them and maybe you use them as well.
 	Mmmmmmmm!
 	Expresses: Something tastes good. Is delicious.
 	Yeah!
@@ -1205,109 +1207,110 @@ const documentationSections = [
 	Video: 10 Interjections Examples in English Conversation
 	Video: Interjections in English || Interjection Word List
 	`,
-  },
-  {
-    title: "One Last Thing…",
-    icon: Zap,
-    content: `If you enjoyed this book and found it helpful, I would be very grateful if you would leave a short review on Amazon. Your thoughts and support really does make a difference.
+	},
+	{
+		title: "One Last Thing…",
+		icon: Zap,
+		content: `If you enjoyed this book and found it helpful, I would be very grateful if you would leave a short review on Amazon. Your thoughts and support really does make a difference.
 	If you’d like to leave a review, click on this link.
 	http://englishtonightbooks.com
 	Thanks again for your support! For more tips, articles, video and activities to help you improve your
 	English please visit my website: English-Tonight.com
 	`,
-  },
-  {
-    title: "Other Books By This Author",
-    icon: Zap,
-    content: `How to Speak English Fluently`,
-  },
+	},
+	{
+		title: "Other Books By This Author",
+		icon: Zap,
+		content: `How to Speak English Fluently`,
+	},
 ]
 
 export function DocumentationAccordion() {
-  const [darkMode, setDarkMode] = useState(false)
+	const [darkMode, setDarkMode] = useState(true)
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-      localStorage.setItem("theme", "light")
-    }
-  }, [darkMode])
+	useEffect(() => {
+		if (darkMode) {
+			document.documentElement.classList.add("dark")
+			localStorage.setItem("theme", "dark")
+		} else {
+			document.documentElement.classList.remove("dark")
+			localStorage.setItem("theme", "light")
+		}
+	}, [darkMode])
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    if (savedTheme === "dark") setDarkMode(true)
-  }, [])
+	useEffect(() => {
+		const savedTheme = localStorage.getItem("theme")
+		if (savedTheme === "dark") setDarkMode(true)
+	}, [])
 
-  return (
-    <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
-      {/* Dark mode toggle button */}
-      <div className="flex justify-end mb-4">
-        <button
-          onClick={() => setDarkMode((prev) => !prev)}
-          className="rounded px-3 py-2 bg-card border shadow hover:bg-muted transition"
-          aria-label="Toggle dark mode"
-        >
-          {darkMode ? "🌙 Dark" : "☀️ Light"}
-        </button>
-      </div>
+	return (
+		<div className="mx-auto max-w-5xl px-4 max-md:px-1.5 py-10 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
+			<div className="mb-6">
+				<div className="flex justify-between">
+					<h1 className="mb-4 text-5xl max-[768px]:text-3xl font-bold tracking-tight text-balance">650 English Pharases for Everyday Speaking</h1>
+					<div className="flex justify-end max-md:absolute max-sm:top-0 max-md:right-3 my-2 max-sm:mt-0">
+						<button
+							onClick={() => setDarkMode((prev) => !prev)}
+							className="rounded w-full px-3 py-2 bg-card border shadow hover:bg-muted transition"
+							aria-label="Toggle dark mode"
+						>
+							{darkMode ? "🌙 Dark" : "☀️ Light"}
+						</button>
+					</div>
+				</div>
+				<p className="text-lg text-muted-foreground text-pretty max-md:pl-2">
+					To improve your English speaking, practice regularly with others and listen to native speakers. Don’t be afraid to make mistakes—each one helps you learn. Try to think in English and use new words in daily conversations. Consistency is key to becoming more confident!.
+				</p>
+			</div>
 
-      <div className="mb-12">
-        <h1 className="mb-4 text-5xl font-bold tracking-tight text-balance">Documentation</h1>
-        <p className="text-lg text-muted-foreground text-pretty">
-          Everything you need to know to build, deploy, and scale your applications. Click on any section below to
-          explore detailed information.
-        </p>
-      </div>
-
-      <Accordion type="single" collapsible className="space-y-4">
-        {documentationSections.map((section, index) => {
-          const Icon = section.icon
-          return (
-            <AccordionItem
-              key={index}
-              value={section.title}
-              className="rounded-lg border bg-card px-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <AccordionTrigger className="py-6 text-left hover:no-underline">
-                <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                    <Icon className="h-5 w-5 text-primary" />
-                  </div>
-                  <span className="text-xl font-semibold">{section.title}</span>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent className="pb-6 pt-2">
-                <div className="ml-14 space-y-4 text-muted-foreground leading-relaxed">
-                  {/* {section.content.split("\n\n").map((paragraph, index) => (
+			<Accordion type="single" collapsible className="space-y-2 ">
+				{documentationSections.map((section, index) => {
+					const Icon = section.icon
+					return (
+						<AccordionItem
+							key={index}
+							value={section.title}
+							className="rounded-lg border bg-card px-3 shadow-sm transition-shadow hover:shadow-md"
+						>
+							<AccordionTrigger className="py-6 text-left hover:no-underline">
+								<div className="flex items-center gap-4">
+									<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+										<Icon className="h-5 w-5 text-primary" />
+									</div>
+									<span className="text-xl font-semibold">{section.title}</span>
+								</div>
+							</AccordionTrigger>
+							<AccordionContent className="pb-6 pt-2">
+								<div className=" space-y-4 text-muted-foreground leading-relaxed">
+									{/* {section.content.split("\n\n").map((paragraph, index) => (
                     <p key={index} className="whitespace-pre-line">
                       {paragraph}
                     </p>
                   ))} */}
-                  <p className="whitespace-pre-line text-lg">{section.content}</p>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          )
-        })}
-      </Accordion>
+									{/* <p className="whitespace-pre-line text-lg">{section.content}</p> */}
+									<p className="whitespace-pre-line text-lg" dangerouslySetInnerHTML={{ __html: section.content }}></p>
+								</div>
+							</AccordionContent>
+						</AccordionItem>
+					)
+				})}
+			</Accordion>
 
-      <div className="mt-12 rounded-lg border bg-muted/50 p-6">
-        <h2 className="mb-2 text-lg font-semibold">Need more help?</h2>
-        <p className="text-sm text-muted-foreground">
-          Can't find what you're looking for? Check out our{" "}
-          <a href="#" className="text-primary hover:underline">
-            community forum
-          </a>{" "}
-          or{" "}
-          <a href="#" className="text-primary hover:underline">
-            contact support
-          </a>
-          .
-        </p>
-      </div>
-    </div>
-  )
+			<div className="mt-12 rounded-lg border bg-muted/50 p-6">
+				<h2 className="mb-2 text-lg font-semibold">Need more help?</h2>
+				<p className="text-sm text-muted-foreground">
+					Can't find what you're looking for? Check out our{" "}
+					<a href="#" className="text-primary hover:underline">
+						community forum
+					</a>{" "}
+					or{" "}
+					<a href="#" className="text-primary hover:underline">
+						contact support
+					</a>
+					.
+				</p>
+				<div className="flex justify-center align-middle"><span>CopyRight &copy; 2025 <strong className="text-sm! underline">AbdeMustafa</strong></span></div>
+			</div>
+		</div>
+	)
 }

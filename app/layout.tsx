@@ -5,7 +5,7 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: '650 English Pharases',
+  title: '650 English Phrases',
   description: 'Created with Next.js and Tailwind CSS by AbdeMustafa',
   generator: 'AbdeMustafa',
 }
@@ -17,6 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head >
+        <link rel="icon" href="https://img.icons8.com/emoji/48/speaking-head.png" />
+      </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         {children}
         <Analytics />

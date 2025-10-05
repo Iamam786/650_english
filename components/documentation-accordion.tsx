@@ -1247,11 +1247,11 @@ export function DocumentationAccordion() {
 		<div className="mx-auto max-w-5xl px-4 max-md:px-1.5 py-10 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
 			<div className="mb-6">
 				<div className="flex justify-between">
-					<h1 className="mb-4 text-5xl max-[768px]:text-3xl font-bold tracking-tight text-balance">650 English Pharases for Everyday Speaking</h1>
-					<div className="flex justify-end max-md:absolute max-sm:top-0 max-md:right-3 my-2 max-sm:mt-0">
+					<h1 className="mb-4 whitespace-nowrap max-sm:whitespace-normal text-5xl max-[768px]:text-3xl font-bold tracking-tight text-balance">650 English Phrases for Everyday Speaking</h1>
+					<div className="relative top-[-1.8rem] right-3 flex  justify-end max-md:absolute max-sm:top-0 max-md:right-3 max-sm:mt-3">
 						<button
 							onClick={() => setDarkMode((prev) => !prev)}
-							className="rounded w-full px-3 py-2 bg-card border shadow hover:bg-muted transition"
+							className="rounded-2xl w-max h-min py-2 px-3 bg-card border shadow-lg hover:bg-muted transition"
 							aria-label="Toggle dark mode"
 						>
 							{darkMode ? "🌙 Dark" : "☀️ Light"}
@@ -1283,10 +1283,9 @@ export function DocumentationAccordion() {
 							<AccordionContent className="pb-6 pt-2">
 								<div className=" space-y-4 text-muted-foreground leading-relaxed">
 									{/* {section.content.split("\n\n").map((paragraph, index) => (
-                    <p key={index} className="whitespace-pre-line">
-                      {paragraph}
-                    </p>
-                  ))} */}
+										<p key={index} className="whitespace-pre-line">
+										{paragraph}</p>
+                 					 ))} */}
 									{/* <p className="whitespace-pre-line text-lg">{section.content}</p> */}
 									<p className="whitespace-pre-line text-lg" dangerouslySetInnerHTML={{ __html: section.content }}></p>
 								</div>

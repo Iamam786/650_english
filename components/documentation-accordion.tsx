@@ -3,7 +3,11 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import React, { useEffect, useState } from "react";
 import { documentationSections } from "@/data/documentation-sections"
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, Plus, Minus, Delete, Trash2, NotebookPen } from "lucide-react"
+import { AddSectionForm } from "@/components/add_content"
+import { se } from "date-fns/locale";
+
+const STORAGE_KEY = "custom_sections_v1";
 
 export function DocumentationAccordion() {
 	const [darkMode, setDarkMode] = useState(true)
@@ -22,6 +26,50 @@ export function DocumentationAccordion() {
 		const savedTheme = localStorage.getItem("theme")
 		if (savedTheme === "dark") setDarkMode(true)
 	}, [])
+
+
+	// Add custom sections state and localStorage handling
+	interface CustomSection {
+		id: string
+		title: string
+		content: string
+	}
+	const [customSections, setCustomSections] = useState<CustomSection[]>([])
+	useEffect(() => {
+		const savedSections = localStorage.getItem(STORAGE_KEY)
+		if (savedSections) {
+			try {
+				const parsed = JSON.parse(savedSections)
+				setCustomSections(parsed)
+			} catch (error) {
+				console.error("Failed to load saved sections:", error)
+			}
+		}
+	}, [])
+
+	useEffect(() => {
+		if (customSections.length > 0) {
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(customSections))
+		}
+	}, [customSections])
+
+	// form visibility state
+	const [showAddForm, setShowAddForm] = useState(false);
+
+	const handleAddSection = (title: string, content: string) => {
+		const newSection: CustomSection = {
+			id: `custom-${Date.now()}`,
+			title,
+			content,
+		}
+
+		setCustomSections([...customSections, newSection])
+		setShowAddForm(false); // form close after submit
+	}
+
+	const handleDeleteSection = (id: string) => {
+		setCustomSections(customSections.filter(section => section.id !== id));
+	};
 
 	return (
 		<div className="mx-auto max-w-5xl px-4 max-md:px-1.5 py-10 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
@@ -47,7 +95,60 @@ export function DocumentationAccordion() {
 				</p>
 			</div>
 
+
+			<div className="mb-4 flex justify-end">
+				<button
+					onClick={() => setShowAddForm(!showAddForm)}
+					className="flex items-center gap-2 rounded hover:rounded-2xl dark:bg-gray-500 text-black cursor-pointer hover:text-white px-4 py-2 shadow hover:shadow-2xl hover:bg-primary/100 transition ease-in"
+				>
+					{showAddForm ? (<Minus className="h-5 w-5" />) : (<Plus className="h-5 w-5" />)}
+				</button>
+			</div>
+
+			{/* Show AddSectionForm only if showAddForm is true */}
+			{showAddForm && (
+				<div className="mb-8 rounded-lg border bg-card p-6 shadow-sm relative">
+					<AddSectionForm onAddSection={handleAddSection} />
+				</div>
+			)}
+
 			<Accordion type="single" collapsible className="space-y-2 ">
+
+				{/* // Custom user-added sections */}
+				{customSections.map((section) => (
+					<AccordionItem
+						key={section.id}
+						value={section.title}
+						className="rounded-lg border bg-card px-3 shadow-sm transition-shadow hover:shadow-md"
+					>
+						<AccordionTrigger className="py-6 text-left hover:no-underline">
+							<div className="flex items-center gap-4 w-full">
+								<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+									<NotebookPen className="h-5 w-5 cursor-progress text-primary" />
+								</div>
+								<span className="text-xl font-semibold">{section.title}</span>
+								<button
+									type="button"
+									onClick={(e) => {
+										e.stopPropagation();
+										handleDeleteSection(section.id);
+									}}
+									className="ml-auto cursor-pointer  rounded px-2 py-1 text-xs bg-red-500 text-white hover:bg-red-600"
+									aria-label="Delete section"
+								>
+									<Trash2 className="h-5 w-5" />
+								</button>
+							</div>
+						</AccordionTrigger>
+						<AccordionContent className="pb-6 pt-2">
+							<div className=" space-y-4 text-muted-foreground leading-relaxed">
+								<p className="whitespace-pre-line text-lg">{section.content}</p>
+							</div>
+						</AccordionContent>
+					</AccordionItem>
+				))}
+
+				{/* // Built-in documentation sections */}
 				{documentationSections.map((section, index) => {
 					const Icon = section.icon
 					return (
@@ -71,13 +172,17 @@ export function DocumentationAccordion() {
 										{paragraph}</p>
                  					 ))} */}
 									{/* <p className="whitespace-pre-line text-lg">{section.content}</p> */}
-									<p className="whitespace-pre-line text-lg" dangerouslySetInnerHTML={{ __html: section.content }}></p>
+									<p className="whitespace-pre-line text-lg">{section.content}</p>
 								</div>
 							</AccordionContent>
 						</AccordionItem>
 					)
 				})}
+
+
 			</Accordion>
+
+
 
 			<div className="mt-12 rounded-lg border bg-muted/50 p-6">
 				<h2 className="mb-2 text-lg font-semibold">Need more help?</h2>

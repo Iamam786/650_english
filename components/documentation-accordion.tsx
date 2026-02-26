@@ -13,16 +13,55 @@ import {
   Sun,
   Plus,
   Minus,
-  Delete,
   Trash2,
   NotebookPen,
 } from "lucide-react";
 import { AddSectionForm } from "@/components/add_content";
 
 const STORAGE_KEY = "custom_sections_v1";
+const CACHE_CLEANUP_KEY = "stale_cache_cleanup_v1";
+const ACTIVE_CACHE_NAMES = new Set([
+  "start-url",
+  "google-fonts-webfonts",
+  "google-fonts-stylesheets",
+  "static-font-assets",
+  "static-image-assets",
+  "next-image",
+  "static-audio-assets",
+  "static-video-assets",
+  "static-js-assets",
+  "static-style-assets",
+  "next-data",
+  "static-data-assets",
+  "apis",
+  "others",
+  "cross-origin",
+]);
+const ACTIVE_CACHE_PREFIXES = ["workbox-precache"];
 
 export function DocumentationAccordion() {
   const [darkMode, setDarkMode] = useState(true);
+  const [isClearingCache, setIsClearingCache] = useState(false);
+
+  useEffect(() => {
+    if (!("caches" in window)) return;
+    if (localStorage.getItem(CACHE_CLEANUP_KEY) === "done") return;
+
+    const cleanupCaches = async () => {
+      const cacheNames = await caches.keys();
+      const staleCaches = cacheNames.filter(
+        (cacheName) =>
+          !ACTIVE_CACHE_NAMES.has(cacheName) &&
+          !ACTIVE_CACHE_PREFIXES.some((prefix) => cacheName.startsWith(prefix))
+      );
+      await Promise.all(staleCaches.map((cacheName) => caches.delete(cacheName)));
+      localStorage.setItem(CACHE_CLEANUP_KEY, "done");
+    };
+
+    cleanupCaches().catch((error) => {
+      console.error("Failed to clean stale caches:", error);
+    });
+  }, []);
 
   useEffect(() => {
     if (darkMode) {
@@ -59,9 +98,7 @@ export function DocumentationAccordion() {
   }, []);
 
   useEffect(() => {
-    if (customSections.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(customSections));
-    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(customSections));
   }, [customSections]);
 
   // form visibility state
@@ -85,18 +122,46 @@ export function DocumentationAccordion() {
   // Open all by default on first render
   const [value, setValue] = useState<string[]>([]);
   useEffect(() => {
-    const all = documentationSections.map((s) => s.title);
+    const all = documentationSections.map((s) => s.id);
     setValue(all);
-  }, [documentationSections]);
+  }, []);
 
   const openAll = () => {
-    const all = documentationSections.map((s) => s.title);
+    const all = [
+      ...documentationSections.map((s) => s.id),
+      ...customSections.map((s) => s.id),
+    ];
     setValue(all);
   };
 
   const closeAll = () => setValue([]);
 
-  const allOpen = value.length === documentationSections.length;
+  const handleClearCaches = async () => {
+    setIsClearingCache(true);
+    try {
+      if ("caches" in window) {
+        const cacheNames = await caches.keys();
+        await Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)));
+      }
+
+      if ("serviceWorker" in navigator) {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(
+          registrations.map((registration) => registration.unregister())
+        );
+      }
+
+      localStorage.removeItem(CACHE_CLEANUP_KEY);
+      window.location.reload();
+    } catch (error) {
+      console.error("Failed to clear caches:", error);
+    } finally {
+      setIsClearingCache(false);
+    }
+  };
+
+  const allOpen =
+    value.length === documentationSections.length + customSections.length;
 
   return (
     <div className="mx-auto max-w-5xl px-4 max-md:px-1.5 py-10 sm:px-6 lg:px-8 bg-white dark:bg-gray-900">
@@ -150,7 +215,7 @@ export function DocumentationAccordion() {
       )}
 
       {/* Show only ONE button at a time */}
-      <div>
+      <div className="mb-3 flex items-center gap-2">
         {allOpen ? (
           <button
             onClick={closeAll}
@@ -166,6 +231,14 @@ export function DocumentationAccordion() {
             Open All
           </button>
         )}
+        <button
+          type="button"
+          onClick={handleClearCaches}
+          disabled={isClearingCache}
+          className="rounded-lg bg-gray-700 px-4 py-2 text-white shadow hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          {isClearingCache ? "Clearing..." : "Clear Cache"}
+        </button>
       </div>
 
       <Accordion
@@ -178,7 +251,7 @@ export function DocumentationAccordion() {
         {customSections.map((section) => (
           <AccordionItem
             key={section.id}
-            value={section.title}
+            value={section.id}
             className="rounded-lg border bg-card px-3 shadow-sm transition-shadow hover:shadow-md"
           >
             <AccordionTrigger className="py-6 text-left hover:no-underline">
@@ -214,7 +287,7 @@ export function DocumentationAccordion() {
           return (
             <AccordionItem
               key={index}
-              value={section.title}
+              value={section.id}
               className="rounded-lg border bg-card px-3 shadow-sm transition-shadow hover:shadow-md"
             >
               <AccordionTrigger className="py-6 text-left hover:no-underline">

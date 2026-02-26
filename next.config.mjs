@@ -1,14 +1,12 @@
 import withPWAInit from "next-pwa";
 
-const isProd =
-  process.env.VERCEL === "1" &&
-  process.env.VERCEL_ENV === "production";
+const isDev = process.env.NODE_ENV !== "production";
 
 const withPWA = withPWAInit({
   dest: "public",
   register: true,
   skipWaiting: true,
-  disable: !isProd,
+  disable: isDev,
 });
 
 const nextConfig = {
